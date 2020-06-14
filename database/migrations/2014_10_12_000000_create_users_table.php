@@ -25,12 +25,12 @@ class CreateUsersTable extends Migration
         });
 
         \DB::table('users')->insert(
-            array(
+            [
                 'email' => 'pickuse2013@gmail.com',
                 'name'=> 'pickuse',
                 'password' => \Hash::make('1234'),
                 'email_verified_at' => \Carbon\Carbon::now()
-            )
+            ]
         );
     }
 

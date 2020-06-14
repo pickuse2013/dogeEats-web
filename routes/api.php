@@ -19,5 +19,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix' => 'auth'], function () {
-    Route::post('login' , 'Api\AuthController@login');
+    Route::post('login', 'Api\AuthController@login');
+    Route::post('register', 'Api\AuthController@register');
+});
+
+Route::group(['middleware' => 'auth:api'], function () {
+
+    Route::get('restaurants', 'Api\RestaurantController@restaurants');
+    Route::group(['prefix' => 'restaurant'], function () {
+        Route::get('{id}', 'Api\RestaurantController@restaurant')->where('id', '[0-9]+');
+        Route::get('favorites', 'Api\RestaurantController@favorites');
+        Route::post('favorite', 'Api\RestaurantController@addFavorite');
+    });
+    
 });
