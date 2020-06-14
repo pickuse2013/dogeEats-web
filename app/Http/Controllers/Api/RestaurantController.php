@@ -19,6 +19,11 @@ class RestaurantController extends Controller
         return Restaurant::with('categories.products.options')->findOrFail($id);
     }
 
+    public function restaurantJson(Request $request)
+    {
+        return Restaurant::with('categories.products.options')->findOrFail($request->id);
+    }
+
     public function favorites()
     {
         //TODO: FINISH IT
