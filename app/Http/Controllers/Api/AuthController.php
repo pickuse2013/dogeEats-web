@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-//use Illuminate\Foundation\Auth\ThrottlesLogins;
+use App\Http\Requests\Api\Auth\LoginRequest;
+use App\Http\Requests\Api\Auth\RegisterRequest;
 use Illuminate\Validation\ValidationException;
 use Hash;
 
@@ -12,22 +13,21 @@ use App\User;
 
 class AuthController extends Controller
 {
-    //use ThrottlesLogins;
-
-     /**
+    /**
      * @param Request $request
      * @return \Illuminate\Http\Response|void
      * @throws ValidationException
      */
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        $this->validateLogin($request);
-        //if ($this->hasTooManyLoginAttempts($request)) {
-        //   return $this->sendLockoutResponse($request);
-        //}
+        return $this->attempLogin($request);
+    }
+
+    public function register(RegisterRequest $request)
+    {
+        $this->createUser($request);
 
         return $this->attempLogin($request);
-
     }
 
     /**
@@ -43,12 +43,22 @@ class AuthController extends Controller
 
     /**
      * @param Request $request
+     */
+    public function validateRegister(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|string',
+            'email' => 'required|string|unique:users,email',
+            'password' => 'required|string'
+        ]);
+    }
+
+    /**
+     * @param Request $request
      * @return \Illuminate\Http\Response|void
      */
     protected function attempLogin(Request $request)
     {
-        //$this->incrementLoginAttempts($request);
-        //dd($request->email);
         $user = User::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
@@ -93,4 +103,14 @@ class AuthController extends Controller
         return 'email';
     }
 
+    public function createUser(Request $request)
+    {
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
+    }
+
+    
 }
