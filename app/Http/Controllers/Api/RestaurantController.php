@@ -29,7 +29,8 @@ class RestaurantController extends Controller
 
     public function favorites()
     {
-        return User::with('favorite_restaurants.restaurant')->findOrFail(Auth::user()->id);
+        $user = User::with('favorite_restaurants.restaurant')->findOrFail(Auth::user()->id);
+        return $user->favorite_restaurants;
     }
 
     public function addFavoriteJson(Request $request)
