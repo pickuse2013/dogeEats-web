@@ -13,8 +13,19 @@ class FavoriteRestaurant extends Model
      */
     protected $table = 'user_favorite_restaurants';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id', 'restaurant_id'
+    ];
+
     public function restaurant()
     {
-        $this->hasOne('App\Model\Restaurant', 'id', 'restaurant_id');
+        //$this->hasOne('App\Model\Restaurant', 'id', 'restaurant_id');
+        return $this->belongsTo('App\Model\Restaurant', 'restaurant_id', 'id');
+        
     }
 }

@@ -29,8 +29,13 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'restaurant'], function () {
         Route::get('/', 'Api\RestaurantController@restaurantJson');
         Route::get('{id}', 'Api\RestaurantController@restaurant')->where('id', '[0-9]+');
+
         Route::get('favorites', 'Api\RestaurantController@favorites');
-        Route::post('favorite', 'Api\RestaurantController@addFavorite');
+        Route::post('favorite', 'Api\RestaurantController@addFavoriteJson');
+        Route::post('{id}/favorite', 'Api\RestaurantController@addFavoriteJson')->where('id', '[0-9]+');
+
+        Route::delete('favorite', 'Api\RestaurantController@deleteFavoriteJson');
+        Route::delete('{id}/favorite', 'Api\RestaurantController@deleteFavoriteJson')->where('id', '[0-9]+');
     });
     
 });

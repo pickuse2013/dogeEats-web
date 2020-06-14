@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Model\Restaurant;
+use App\User;
+
+use Auth;
 
 class RestaurantController extends Controller
 {
@@ -26,7 +29,44 @@ class RestaurantController extends Controller
 
     public function favorites()
     {
-        //TODO: FINISH IT
-        //return Restaurant::with('categories.products.options')->findOrFail($id);
+        return User::with('favorite_restaurants.restaurant')->findOrFail(Auth::user()->id);
+    }
+
+    public function addFavoriteJson(Request $request)
+    {
+        $user = User::findOrFail(Auth::user()->id);
+
+        $user->favorite_restaurants()->create([
+            'user_id' => $user->id,
+            'restaurant_id' => $request->id
+        ]);
+
+        return $this->success_message();
+    }
+
+    public function addFavorite($id)
+    {
+        $user = User::findOrFail(Auth::user()->id);
+
+        $user->favorite_restaurants()->create([
+            'user_id' => $user->id,
+            'restaurant_id' => $id
+        ]);
+
+        return $this->success_message();
+    }
+
+    public function deleteFavoriteJson(Request $request)
+    {
+        $user = User::findOrFail(Auth::user()->id);
+
+        $user->favorite_restaurants()->where('restaurant_id', $request->id)->delete();
+
+        return $this->success_message();
+    }
+
+    private function success_message()
+    {
+        return json_encode(['message' => 'success']);
     }
 }
