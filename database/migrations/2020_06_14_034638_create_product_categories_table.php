@@ -28,6 +28,10 @@ class CreateProductCategoriesTable extends Migration
             [
                 'restaurant_id' => '1',
                 'name' => '沙拉'
+            ],
+            [
+                'restaurant_id' => '2',
+                'name' => '義大利麵'
             ]
         ]);
     }

@@ -12,11 +12,16 @@ use Auth;
 
 class RestaurantController extends Controller
 {
-    public function restaurants()
+    public function restaurants(Request $request)
     {
-        return Restaurant::All();
+        if ($request->has('name')) {
+            return Restaurant::where('name', 'like', '%' . $request->name . '%')->get();
+        } else {
+            return Restaurant::All();
+        }
     }
 
+    //TODO: can be remove
     public function restaurant($id)
     {
         return Restaurant::with('categories.products.options')->findOrFail($id);

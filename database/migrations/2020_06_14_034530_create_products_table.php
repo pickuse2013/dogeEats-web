@@ -42,6 +42,12 @@ class CreateProductsTable extends Migration
                 'name' => '凱薩沙拉',
                 'description' => '油膩食品的配角，可以讓你稍微活著久一點',
                 'price' => '70'
+            ],
+            [
+                'category_id' => '3',
+                'name' => '奶油白醬麵',
+                'description' => '起司粉可能不用錢',
+                'price' => '110'
             ]
         ]);
     }
