@@ -13,4 +13,16 @@ class Option extends Model
      */
     protected $table = 'product_options';
 
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
+
+    public function details()
+    {
+        return $this->hasMany(\App\Model\Product\Option\Detail::class, '');
+    }
 }

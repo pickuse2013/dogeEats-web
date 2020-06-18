@@ -37,5 +37,11 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::delete('favorite', 'Api\RestaurantController@deleteFavoriteJson');
         Route::delete('{id}/favorite', 'Api\RestaurantController@deleteFavoriteJson')->where('id', '[0-9]+');
     });
+
+    Route::get('orders', 'Api\OrderController@orders');
+    Route::group(['prefix' => 'order'], function () {
+        Route::get('/current', 'Api\OrderController@currentOrder');
+        Route::post('/', 'Api\OrderController@order');
+    });
     
 });

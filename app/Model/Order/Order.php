@@ -10,4 +10,14 @@ class Order extends Model
     {
         return $this->hasMany('App\Order\Detail', 'order_id', 'id');
     }
+
+    public function user()
+    {
+        return $this->hasOne(\App\User::class, 'user_id', 'id');
+    }
+
+    public function restaurant()
+    {
+        return $this->hasOne(\App\Model\Restaurant::class, 'restaurant_id', 'id');
+    }
 }

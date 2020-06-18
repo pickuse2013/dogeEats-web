@@ -29,7 +29,8 @@ class CreateUsersTable extends Migration
                 'email' => 'pickuse2013@gmail.com',
                 'name'=> 'pickuse',
                 'password' => \Hash::make('1234'),
-                'email_verified_at' => \Carbon\Carbon::now()
+                'email_verified_at' => \Carbon\Carbon::now(),
+                'api_token' => '15eeba2ff06ffb'
             ]
         );
     }

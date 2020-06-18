@@ -16,6 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('restaurant_id')->comment('店家id');
+            $table->bigInteger('user_id')->comment('使用者id');
             $table->string('address_source')->comment('出發地點');
             $table->string('address_destination')->comment('目的地點');
             $table->bigInteger('transporter_id')->comment('外送員id')->nullable();

@@ -21,15 +21,9 @@ class RestaurantController extends Controller
         }
     }
 
-    //TODO: can be remove
-    public function restaurant($id)
-    {
-        return Restaurant::with('categories.products.options')->findOrFail($id);
-    }
-
     public function restaurantJson(Request $request)
     {
-        return Restaurant::with('categories.products.options')->findOrFail($request->id);
+        return Restaurant::with('categories.products.options.details')->findOrFail($request->id);
     }
 
     public function favorites()
