@@ -19,6 +19,8 @@ class CreateOrdersTable extends Migration
             $table->bigInteger('user_id')->comment('使用者id');
             $table->string('address_source')->comment('出發地點');
             $table->string('address_destination')->comment('目的地點');
+            $table->string('position_source')->comment('出發座標');
+            $table->string('position_destination')->comment('目的座標');
             $table->bigInteger('transporter_id')->comment('外送員id')->nullable();
             $table->text('custom')->comment('訂單客製化選項');
             $table->timestamps();

@@ -4,14 +4,14 @@ namespace App\Model\Cart;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Option extends Model
+class Product extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'cart_product_options';
+    protected $table = 'cart_products';
 
     /**
      * Indicates if the model should be timestamped.
@@ -25,10 +25,10 @@ class Option extends Model
      *
      * @var array
      */
-    protected $fillable = ['cart_product_id', 'option_id', 'option'];
+    protected $fillable = ['cart_id', 'product_id'];
 
-    public function option_name()
+    public function options()
     {
-        return $this->belongsTo(\App\Model\Product\Option::class, 'option_id', 'id');
+        return $this->hasMany(\App\Model\Cart\Option::class, 'cart_product_id', 'id');
     }
 }

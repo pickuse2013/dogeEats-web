@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+ //   return $request->user();
+//});
 
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', 'Api\AuthController@login');
@@ -42,6 +42,14 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'order'], function () {
         Route::get('/current', 'Api\OrderController@currentOrder');
         Route::post('/', 'Api\OrderController@order');
+    });
+
+   
+    Route::group(['prefix' => 'cart'], function () {
+        Route::get('/', 'Api\CartController@cart');
+        Route::post('/', 'Api\CartController@setCart');
+        Route::post('/add', 'Api\CartController@addToCart');
+        Route::delete('/', 'Api\CartController@clearCart');
     });
     
 });
