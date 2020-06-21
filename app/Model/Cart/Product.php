@@ -25,7 +25,7 @@ class Product extends Model
      *
      * @var array
      */
-    protected $fillable = ['cart_id', 'product_id'];
+    protected $fillable = ['cart_id', 'product_id', 'count'];
 
     public function options()
     {

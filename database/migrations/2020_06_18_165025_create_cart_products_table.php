@@ -17,6 +17,7 @@ class CreateCartProductsTable extends Migration
             $table->id();
             $table->bigInteger('cart_id');
             $table->bigInteger('product_id');
+            $table->integer('count');
         });
     }
 

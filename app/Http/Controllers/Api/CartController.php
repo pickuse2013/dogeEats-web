@@ -28,7 +28,7 @@ class CartController extends Controller
 
         foreach ($request->products as $product) {
             $real_product = Product::FindOrFail($product['id']);
-            $cart_product = $cart->products()->create(['product_id' => $real_product->id]);
+            $cart_product = $cart->products()->create(['product_id' => $real_product->id, 'count' => $product['count']]);
 
             foreach ($product['options'] as $package) {
 
@@ -58,7 +58,7 @@ class CartController extends Controller
         $product = $request->product;
 
         $real_product = Product::FindOrFail($product['id']);
-        $cart_product = $cart->products()->create(['product_id' => $real_product->id]);
+        $cart_product = $cart->products()->create(['product_id' => $real_product->id, 'count' => $product['count']]);
 
         foreach ($product['options'] as $package) {
 
