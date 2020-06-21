@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
             $table->string('position_source')->comment('出發座標');
             $table->string('position_destination')->comment('目的座標');
             $table->bigInteger('transporter_id')->comment('外送員id')->nullable();
-            $table->text('custom')->comment('訂單客製化選項');
+            $table->text('custom')->nullable()->comment('訂單客製化選項');
             $table->timestamps();
         });
     }

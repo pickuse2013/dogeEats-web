@@ -17,7 +17,7 @@ class CreateOrderDetailsTable extends Migration
             $table->id();
             $table->bigInteger('order_id')->comment('訂單id');
             $table->bigInteger('product_id')->comment('商品id');
-            $table->json('custom')->comment('商品客製化選項');
+            $table->string('custom')->comment('商品客製化選項');
             $table->timestamps();
         });
     }

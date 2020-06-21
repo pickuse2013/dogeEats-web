@@ -4,21 +4,21 @@ namespace App\Model\Order;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Detail extends Model
+class Option extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'order_details';
+    protected $table = 'order_options';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['order_id', 'product_id', 'custom'];
+    protected $fillable = ['order_detail_id', 'option_id', 'option'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -28,13 +28,8 @@ class Detail extends Model
     public $timestamps = false;
 
 
-    public function order()
+    public function option()
     {
-        return $this->belongsTo(\App\Model\Order\Order::class, "order_id", "id");
-    }
-
-    public function options()
-    {
-        return $this->hasMany(\App\Model\Order\Option::class, "order_detail_id", "id");
+        return $this->belongsTo(\App\Model\Product\Option\Detail::class, "option_id", "id");
     }
 }

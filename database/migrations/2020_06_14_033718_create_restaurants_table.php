@@ -19,14 +19,16 @@ class CreateRestaurantsTable extends Migration
             $table->string('description')->nullable();
             $table->integer('service_fee')->default('0')->comment('服務費'); // 1-3
             $table->string('address')->nullable()->comment('地址');
+            $table->string('position')->nullable()->comment('座標');
             $table->timestamps();
         });
 
         \DB::table('restaurants')->insert(
             [
-                'name' => '北科雞排大王',
-                'description'=> '新鮮的炸雞排專賣店，就開在北科',
-                'address' => '台北市大安區忠孝東路三段1號'
+                'name' => '肯德基KFC-台北八德餐廳',
+                'description'=> '肯德基是源自美國的快餐連鎖店，總部設於肯塔基州路易維爾市，以炸雞為主力產品。總體來說是全球第二大的餐飲連鎖企業，僅次於麥當勞，截至2015年12月，在123個國家和地區擁有20,000+個分店。目前與必勝客、塔可鐘同為美國跨國餐飲集團百勝旗下子公司。',
+                'address' => '100台北市中正區八德路一段64號',
+                'position' => '25.0431988,121.5313617'
             ]
         );
 

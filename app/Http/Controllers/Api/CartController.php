@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Model\Cart;
+use App\Model\Order;
 use App\Model\Product;
 use App\User;
 
@@ -47,11 +48,10 @@ class CartController extends Controller
     public function addToCart(Request $request)
     {
         $user_id = Auth::user()->id;
-        
+
         $cart = Cart::clearCart($user_id, false, $request->restaurant_id);
 
-        if($cart == null)
-        {
+        if ($cart == null) {
             return json_encode(['message' => 'you input may have an error']);
         }
 
@@ -75,6 +75,55 @@ class CartController extends Controller
     {
         $user_id = Auth::user()->id;
         Cart::clearCart($user_id);
+        return $this->success_message();
+    }
+
+    public function makeOrder(Request $request)
+    {
+        $user_id = Auth::user()->id;
+        $cart = Cart::with('products.options')->where('restaurant_id', $request->restaurant_id)->where('user_id',  $user_id)->get()->last();
+
+        if ($cart == null) {
+            return json_encode(['message' => 'you should add cart first']);
+        }
+
+        $order = new Order();
+        $order->user_id = $user_id;
+        $order->restaurant_id = $cart->restaurant->id;
+        $order->address_source = $cart->restaurant->address;
+        $order->position_source = $cart->restaurant->position;
+        $order->fill($request->all());
+        $order->save();
+
+        //return ($cart->products);
+
+
+        foreach ($cart->products as $product) {
+
+            //return $product;
+            $_product = $order->details()->create(['product_id' => $product->id, 'custom' => '']);
+
+            //
+
+
+            // return $_product;
+            //$real_product = Product::FindOrFail($product['id']);
+            //$cart_product = $cart->products()->create(['product_id' => $real_product->id, 'count' => $product['count']]);
+
+            foreach ($product['options'] as $package) {
+                
+                $_option = $_product->options()->create(['order_detail_id' => $_product->id, 'option_id' => $package->option_id, 'option' => $package->option]);
+                //foreach ($package['options'] as $option) {
+
+                //    $cart_product->options()->create(['cart_product_id' => $cart_product->id, 'option_id' => $package['id'], 'option' => $option]);
+                //}
+            }
+
+            //dd($cart_product->options());
+        }
+
+        Cart::clearCart($user_id);
+
         return $this->success_message();
     }
 

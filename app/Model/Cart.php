@@ -36,4 +36,9 @@ class Cart extends Model
     {
         return $this->hasMany(\App\Model\Cart\Product::class);
     }
+
+    public function restaurant()
+    {
+        return $this->hasOne(\App\Model\Restaurant::class, 'id', 'restaurant_id');
+    }
 }
