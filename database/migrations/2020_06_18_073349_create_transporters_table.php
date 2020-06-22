@@ -17,6 +17,7 @@ class CreateTransportersTable extends Migration
             $table->id();
             $table->bigInteger("user_id");
             $table->bigInteger("assigment_order_id")->nullable();
+            $table->boolean("active")->default(false);
         });
 
         \DB::table('transporters')->insert(

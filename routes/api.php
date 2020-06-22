@@ -53,4 +53,11 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::delete('/', 'Api\CartController@clearCart');
     });
     
+
+    Route::group(['prefix' => 'transporter'], function () {
+        Route::post('/active', 'Api\TransporterController@active');
+        Route::post('/deactive', 'Api\TransporterController@deactive');
+        Route::get('/order', 'Api\TransporterController@order');
+        Route::post('/order/sent', 'Api\TransporterController@finishOrder');
+    });
 });
