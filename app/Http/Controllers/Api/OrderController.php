@@ -13,4 +13,9 @@ class OrderController extends Controller
     {
         return Order::where('user_id', Auth::user()->id)->get();
     }
+
+    public function currentOrder(Request $request)
+    {
+        return Order::where('user_id', Auth::user()->id)->whereIn('status', [0,1,2])->get();
+    }
 }
