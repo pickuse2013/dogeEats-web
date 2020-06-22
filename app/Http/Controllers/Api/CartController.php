@@ -128,7 +128,8 @@ class CartController extends Controller
         $transporter = Transporter::where('active', true)->where('assigment_order_id', null)->first();
         if($transporter != null)
         {
-            $transporter->update(['assigment_order_id', $order->id]);
+            $transporter->assigment_order_id = $order->id;
+            $transporter->save();
             $order->transporter_id = $transporter->id;
             $order->save();
         }
