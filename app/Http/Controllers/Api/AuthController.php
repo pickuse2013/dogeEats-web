@@ -59,7 +59,7 @@ class AuthController extends Controller
      */
     protected function attempLogin(Request $request)
     {
-        $user = User::where('email', $request->email)->first();
+        $user = User::with('transporter')->where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             return $this->sendFailedLoginResponse($request);

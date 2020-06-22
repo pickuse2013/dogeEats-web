@@ -40,4 +40,9 @@ class User extends Authenticatable
     public function favorite_restaurants(){
         return $this->hasMany('App\Model\User\FavoriteRestaurant', 'user_id', 'id');
     }
+
+    public function transporter()
+    {
+        return $this->hasOne(\App\Model\Transporter::class, 'user_id', 'id');
+    }
 }

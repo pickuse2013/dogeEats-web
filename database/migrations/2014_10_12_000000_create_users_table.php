@@ -24,14 +24,22 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
 
-        \DB::table('users')->insert(
+        \DB::table('users')->insert([
             [
                 'email' => 'pickuse2013@gmail.com',
                 'name'=> 'pickuse',
                 'password' => \Hash::make('1234'),
                 'email_verified_at' => \Carbon\Carbon::now(),
                 'api_token' => '15eeba2ff06ffb'
+            ],
+            [
+                'email' => 'transporter@gmail.com',
+                'name'=> 'transporter',
+                'password' => \Hash::make('1234'),
+                'email_verified_at' => \Carbon\Carbon::now(),
+                'api_token' => '15eeba2ff06ffg'
             ]
+        ]
         );
     }
 

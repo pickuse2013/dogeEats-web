@@ -16,8 +16,15 @@ class CreateTransportersTable extends Migration
         Schema::create('transporters', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("user_id");
-            $table->timestamps();
+            $table->bigInteger("assigment_order_id")->nullable();
         });
+
+        \DB::table('transporters')->insert(
+            [
+                'user_id' => 2
+            ]
+        
+        );
     }
 
     /**
