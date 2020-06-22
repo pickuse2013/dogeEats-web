@@ -34,9 +34,10 @@ class CreateRestaurantsTable extends Migration
 
         \DB::table('restaurants')->insert(
             [
-                'name' => '光華義大利麵店',
+                'name' => '嵐迪義大利麵館',
                 'description'=> '只是義大利麵',
-                'address' => '台北市中正區八德路一段82巷9弄1號'
+                'address' => '100台北市中正區八德路一段82巷9弄1號',
+                'position' => '25.0431988,121.5313617'
             ]
         );
     }
