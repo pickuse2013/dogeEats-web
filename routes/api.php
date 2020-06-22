@@ -59,5 +59,6 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::post('/deactive', 'Api\TransporterController@deactive');
         Route::get('/order', 'Api\TransporterController@order');
         Route::post('/order/sent', 'Api\TransporterController@finishOrder');
+        Route::post('/order/getfood', 'Api\TransporterController@getFood');
     });
 });

@@ -9,6 +9,7 @@ use App\Model\Cart;
 use App\Model\Order;
 use App\Model\Product;
 use App\User;
+use App\Model\Transporter;
 
 use Auth;
 
@@ -123,6 +124,14 @@ class CartController extends Controller
         }
 
         Cart::clearCart($user_id);
+
+        $transporter = Transporter::where('active', true)->where('assigment_order_id', null)->first();
+        if($transporter != null)
+        {
+            $transporter->update(['assigment_order_id', $order->id]);
+            $order->transporter_id = $transporter->id;
+            $order->save();
+        }
 
         return $this->success_message();
     }
