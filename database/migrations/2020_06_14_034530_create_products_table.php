@@ -30,14 +30,14 @@ class CreateProductsTable extends Migration
                 'name' => '標準大雞排',
                 'description' => '新鮮的炸雞排',
                 'price' => '100',
-                'image_url' => 'https://media.zenfs.com/en/yahoo__216/19c7202e0e02977ff82b28f3803b1d96'
+                'image_url' => "https://media.zenfs.com/en/yahoo__216/19c7202e0e02977ff82b28f3803b1d96"
             ],
             [
                 'category_id' => '1',
                 'name' => '標準小雞排',
                 'description' => '新鮮的炸雞排',
                 'price' => '100',
-                'image_url' => 'https://media.zenfs.com/en/yahoo__216/19c7202e0e02977ff82b28f3803b1d96'
+                'image_url' => "https://media.zenfs.com/en/yahoo__216/19c7202e0e02977ff82b28f3803b1d96"
             ],
             [
                 'category_id' => '2',
