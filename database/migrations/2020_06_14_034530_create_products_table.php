@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('description')->comment('說明');
             $table->integer('price')->comment('價格');
-            $table->string('image_url')->nullable()->comment('圖片位址');
+            $table->text('image_url')->nullable()->comment('圖片位址');
             $table->timestamps();
         });
 
@@ -29,8 +29,7 @@ class CreateProductsTable extends Migration
                 'category_id' => '1',
                 'name' => '標準大雞排',
                 'description' => '新鮮的炸雞排',
-                'price' => '100',
-                'image_url' => 'https://images1.epochhk.com/pictures/67113/Fotolia_103149367_Subscription_L_1@1200x1200.jpg'
+                'price' => '100'
             ],
             [
                 'category_id' => '1',
