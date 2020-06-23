@@ -16,6 +16,6 @@ class OrderController extends Controller
 
     public function currentOrder(Request $request)
     {
-        return Order::where('user_id', Auth::user()->id)->whereIn('status', [0,1,2])->get();
+        return Order::with('details.product')->where('user_id', Auth::user()->id)->whereIn('status', [0,1,2])->get();
     }
 }

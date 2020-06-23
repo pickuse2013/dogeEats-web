@@ -37,4 +37,9 @@ class Detail extends Model
     {
         return $this->hasMany(\App\Model\Order\Option::class, "order_detail_id", "id");
     }
+
+    public function product()
+    {
+        return $this->hasOne(\App\Model\Product::class, "id", "product_id");
+    }
 }
