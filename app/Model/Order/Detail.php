@@ -18,7 +18,7 @@ class Detail extends Model
      *
      * @var array
      */
-    protected $fillable = ['order_id', 'product_id', 'custom'];
+    protected $fillable = ['order_id', 'product_id', 'custom', 'count'];
 
     /**
      * Indicates if the model should be timestamped.

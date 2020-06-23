@@ -100,9 +100,8 @@ class CartController extends Controller
 
 
         foreach ($cart->products as $product) {
-
             //return $product;
-            $_product = $order->details()->create(['product_id' => $product->id, 'custom' => '']);
+            $_product = $order->details()->create(['product_id' => $product->id, 'count'=> $product->count, 'custom' => '']);
 
             //
 
