@@ -39,9 +39,10 @@ class CreateRestaurantsTable extends Migration
                 'name' => '嵐迪義大利麵館',
                 'description'=> '只是義大利麵',
                 'address' => '100台北市中正區八德路一段82巷9弄1號',
-                'position' => "25.0431988,121.5313617",
-                'img_url' => "https://candicecity.com/wp-content/uploads/flickr/21318023508_633fb3d1eb_b.jpg"
-            ]);
+                'position' => "25.0431988,121.5313617",
+                "img_url" => "https://candicecity.com/wp-content/uploads/flickr/21318023508_633fb3d1eb_b.jpg"
+            ]
+        );
     }
 
     /**
