@@ -29,7 +29,8 @@ class CreateProductsTable extends Migration
                 'category_id' => '1',
                 'name' => '標準大雞排',
                 'description' => '新鮮的炸雞排',
-                'price' => '100'
+                'price' => '100',
+                'image_url' => 'https://images1.epochhk.com/pictures/67113/Fotolia_103149367_Subscription_L_1@1200x1200.jpg'
             ],
             [
                 'category_id' => '1',
